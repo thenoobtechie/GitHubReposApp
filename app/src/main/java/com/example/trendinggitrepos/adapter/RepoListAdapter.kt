@@ -9,15 +9,18 @@ import com.example.trendinggitrepos.R
 import com.example.trendinggitrepos.Utility
 import com.example.trendinggitrepos.model.RepoModel
 import kotlinx.android.synthetic.main.repo_item_layout.view.*
+import android.transition.TransitionManager
 
-class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
 
-    // TODO("COLLAPSED/EXPANDED VIEW")
+
+class RepoListAdapter(var recyclerView: RecyclerView): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
 
     private var repos: List<RepoModel>? = null
     private val DEFAULT_LOADING_SIZE = 15
     private val LOADING_VIEW_ = 0
     private val LOADED_VIEW_ = 1
+
+    var mExpandedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoItemViewHolder {
         val view: View
@@ -36,7 +39,7 @@ class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>(
     override fun getItemCount(): Int = repos?.size ?: DEFAULT_LOADING_SIZE
 
     override fun onBindViewHolder(holder: RepoItemViewHolder, position: Int) {
-        repos?.let { holder.update(it[position]) }
+        repos?.let { holder.update(it[position], position) }
     }
 
     fun setData(repos: List<RepoModel>) {
@@ -46,10 +49,23 @@ class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>(
 
     inner class RepoItemViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        fun update(repoModel: RepoModel) {
+        fun update(repoModel: RepoModel, position: Int) {
             itemView.author.text = repoModel.author
             itemView.name.text = repoModel.name
+            itemView.language.text = repoModel.language ?: "NA"
+            itemView.stars.text = "${repoModel.stars}"
+            itemView.forks.text = "${repoModel.forks}"
             Utility.setImageFromUrl(MyApplication.application, repoModel.avatar, itemView.avatar)
+
+            val isExpanded = position == mExpandedPosition
+            itemView.details_group.visibility = if (isExpanded) View.VISIBLE else View.GONE
+            itemView.isActivated = isExpanded
+
+            itemView.setOnClickListener {
+                mExpandedPosition = if (isExpanded) -1 else position
+                TransitionManager.beginDelayedTransition(itemView as ViewGroup)
+                notifyDataSetChanged()
+            }
         }
     }
 }

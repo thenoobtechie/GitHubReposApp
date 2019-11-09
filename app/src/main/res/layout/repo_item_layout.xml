@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dimen_default_margin"
     android:layout_marginStart="@dimen/dimen_default_margin"
     android:layout_marginEnd="@dimen/dimen_default_margin"
     android:layout_marginTop="@dimen/dimen_margin_between_views">
@@ -17,8 +17,7 @@
         tools:tint="@color/colorPrimary"
         android:layout_margin="@dimen/dimen_default_margin"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/author"
@@ -46,6 +45,69 @@
         android:layout_marginEnd="@dimen/dimen_default_margin"
         android:layout_marginStart="@dimen/dimen_default_margin"/>
 
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem/random"
+        android:maxLines="2"
+        app:layout_constraintStart_toStartOf="@id/author"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
+        android:layout_marginEnd="@dimen/dimen_default_margin"/>
 
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/us_zipcodes"
+        android:maxLines="2"
+        android:drawableStart="@drawable/red_oval_shape"
+        android:drawablePadding="@dimen/dimen_margin_between_views"
+        app:layout_constraintStart_toStartOf="@id/author"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
+        android:layout_marginEnd="@dimen/dimen_default_margin"/>
+
+
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/us_zipcodes"
+        android:maxLines="2"
+        android:drawableStart="@mipmap/star_yellow_16"
+        android:drawablePadding="@dimen/dimen_margin_between_views"
+        android:layout_marginStart="@dimen/dimen_default_margin"
+        app:layout_constraintStart_toEndOf="@id/language"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
+        android:layout_marginEnd="@dimen/dimen_default_margin"/>
+
+
+    <TextView
+        android:id="@+id/forks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/us_zipcodes"
+        android:maxLines="2"
+        android:drawableStart="@mipmap/fork_black_16"
+        android:drawablePadding="@dimen/dimen_margin_between_views"
+        android:layout_marginStart="@dimen/dimen_default_margin"
+        app:layout_constraintStart_toEndOf="@id/stars"
+        app:layout_constraintTop_toBottomOf="@id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
+        android:layout_marginEnd="@dimen/dimen_default_margin"/>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/details_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="description,forks,stars,language"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

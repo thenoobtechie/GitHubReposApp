@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val repoListAdapter = RepoListAdapter()
+    private lateinit var repoListAdapter: RepoListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        repoListAdapter = RepoListAdapter(rv_repo_list)
 
         rv_repo_list.layoutManager = LinearLayoutManager(this, VERTICAL, false)
         rv_repo_list.addItemDecoration(DividerItemDecoration(this, VERTICAL))
