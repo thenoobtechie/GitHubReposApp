@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.trendinggitrepos.database.AppDB
 import com.example.trendinggitrepos.model.RepoModel
 
-class GitHubRepoDataSource : DataUpdateCallback {
+class GitHubRepo : DataUpdateCallback {
 
     val localDataSource = LocalDataSource()
     val remoteDataSource = RemoteDataSource(this)
@@ -20,8 +20,8 @@ class GitHubRepoDataSource : DataUpdateCallback {
 
     companion object
     {
-        fun getInstance(): GitHubRepoDataSource {
-            return GitHubRepoDataSource()
+        fun getInstance(): GitHubRepo {
+            return GitHubRepo()
         }
     }
 }

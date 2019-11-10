@@ -13,10 +13,14 @@ import com.example.trendinggitrepos.viewmodel.GithubRepoViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var repoListAdapter: RepoListAdapter
+
+    @Inject
+    internal lateinit var viewModel: GithubRepoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             TODO("UNIT/UI TESTS")
         */
 
-        val viewModel = ViewModelProviders.of(this).get(GithubRepoViewModel::class.java)
         viewModel.liveData?.observe(this, Observer {
             it?.let {
                 val jsonStr = Gson().toJson(it)

@@ -12,6 +12,7 @@ import com.example.trendinggitrepos.model.RepoModel
         RepoModel::class
     ],
     version = 1
+        ,exportSchema = false
 )
 abstract class AppDB : RoomDatabase() {
 
