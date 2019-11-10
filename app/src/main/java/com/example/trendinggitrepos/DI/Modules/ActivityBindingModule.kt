@@ -10,7 +10,5 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [MainActivityModule::class])
     abstract fun contributesMainActivity(): MainActivity
-//
-//    @ContributesAndroidInjector(modules = [ContributorModule::class])
-//    abstract fun contributesContributorsDetailsActivity(): ContributorsDetailsActivity
+
 }

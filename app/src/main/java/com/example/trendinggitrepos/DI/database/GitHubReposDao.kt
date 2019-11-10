@@ -1,4 +1,4 @@
-package com.example.trendinggitrepos.database.daos
+package com.example.trendinggitrepos.DI.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

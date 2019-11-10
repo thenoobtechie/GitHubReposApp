@@ -1,8 +1,8 @@
 package com.example.trendinggitrepos.datasource
 
 import com.example.trendinggitrepos.Constants
+import com.example.trendinggitrepos.DI.Network.GitHubApiService
 import com.example.trendinggitrepos.model.RepoModel
-import com.example.trendinggitrepos.network.GitHubApiService
 import kotlinx.coroutines.*
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -10,16 +10,18 @@ import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.coroutines.CoroutineContext
 
-class RemoteDataSource(var onDataUpdateCallback: DataUpdateCallback): CoroutineScope {
+class RemoteDataSource(
+    networkService: GitHubApiService
+): CoroutineScope {
+    lateinit var onDataUpdateCallback: DataUpdateCallback
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Main
 
 
-    private val retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(
-        GsonConverterFactory.create()).build()
-    private val apiService = retrofit.create(GitHubApiService::class.java)
-    val call = apiService.getListOfRepos()
+
+
+    val call = networkService.getListOfRepos()
 
     fun fetchTrendingRepos() {
         launch {

@@ -1,6 +1,7 @@
 package com.example.trendinggitrepos
 
 import android.app.Application
+import com.app.nasa.DI.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

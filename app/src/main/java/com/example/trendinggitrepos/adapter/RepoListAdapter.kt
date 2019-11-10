@@ -13,7 +13,7 @@ import android.transition.TransitionManager
 
 
 
-class RepoListAdapter(var recyclerView: RecyclerView): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
+class RepoListAdapter(): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
 
     private var repos: List<RepoModel>? = null
     private val DEFAULT_LOADING_SIZE = 15

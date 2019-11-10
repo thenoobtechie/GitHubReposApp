@@ -1,4 +1,4 @@
-package com.example.trendinggitrepos.network
+package com.example.trendinggitrepos.DI.Network
 
 import com.example.trendinggitrepos.model.RepoModel
 import retrofit2.Call
