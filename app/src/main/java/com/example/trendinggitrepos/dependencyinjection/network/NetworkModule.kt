@@ -1,7 +1,7 @@
 package com.app.nasatask.DI.Network
 
 import com.example.trendinggitrepos.Constants.Companion.BASE_URL
-import com.example.trendinggitrepos.DI.Network.GitHubApiService
+import com.example.trendinggitrepos.dependencyinjection.network.GitHubApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

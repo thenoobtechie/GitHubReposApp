@@ -1,16 +1,12 @@
 package com.app.nasatask.DI.VMFactory
 
-import androidx.lifecycle.ViewModel
-import com.example.trendinggitrepos.DI.Network.GitHubApiService
-import com.example.trendinggitrepos.DI.database.GitHubReposDao
+import com.example.trendinggitrepos.dependencyinjection.network.GitHubApiService
+import com.example.trendinggitrepos.dependencyinjection.database.GitHubReposDao
 import com.example.trendinggitrepos.datasource.GitHubRepo
 import com.example.trendinggitrepos.datasource.LocalDataSource
 import com.example.trendinggitrepos.datasource.RemoteDataSource
-import com.example.trendinggitrepos.viewmodel.GithubRepoViewModel
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.IntoMap
 
 @Module
 public class MyRepoModule {

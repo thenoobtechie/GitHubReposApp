@@ -3,7 +3,7 @@ package com.app.nasatask.DI.database
 import android.content.Context
 
 import androidx.room.Room
-import com.example.trendinggitrepos.DI.database.GitHubReposDao
+import com.example.trendinggitrepos.dependencyinjection.database.GitHubReposDao
 import javax.inject.Singleton
 
 import dagger.Module

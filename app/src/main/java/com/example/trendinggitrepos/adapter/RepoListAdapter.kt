@@ -13,7 +13,7 @@ import android.transition.TransitionManager
 
 
 
-class RepoListAdapter(): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
+class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
 
     private var repos: List<RepoModel>? = null
     private val DEFAULT_LOADING_SIZE = 15
@@ -42,7 +42,7 @@ class RepoListAdapter(): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder
         repos?.let { holder.update(it[position], position) }
     }
 
-    fun setData(repos: List<RepoModel>) {
+    fun setData(repos: List<RepoModel>?) {
         this.repos = repos
         notifyDataSetChanged()
     }
