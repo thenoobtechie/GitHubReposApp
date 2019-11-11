@@ -1,38 +1,57 @@
 package com.example.trendinggitrepos.datasource
 
-import com.example.trendinggitrepos.Constants
+import android.content.Context.MODE_PRIVATE
+import com.example.trendinggitrepos.Constants.Companion.LAST_FETCH_TIME
+import com.example.trendinggitrepos.MyApplication
+import com.example.trendinggitrepos.dependencyinjection.network.GitHubApiService
 import com.example.trendinggitrepos.model.RepoModel
-import com.example.trendinggitrepos.network.GitHubApiService
 import kotlinx.coroutines.*
 import retrofit2.Response
-import retrofit2.Retrofit
 import retrofit2.awaitResponse
-import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class RemoteDataSource(var onDataUpdateCallback: DataUpdateCallback): CoroutineScope {
+class RemoteDataSource(
+    private val networkService: GitHubApiService
+) : CoroutineScope {
+
+    lateinit var onDataUpdateCallback: DataUpdateCallback
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Main
 
-
-    private val retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL).addConverterFactory(
-        GsonConverterFactory.create()).build()
-    private val apiService = retrofit.create(GitHubApiService::class.java)
-    val call = apiService.getListOfRepos()
-
     fun fetchTrendingRepos() {
+
         launch {
+
             var response: Response<List<RepoModel>>? = null
+            val call = networkService.getListOfRepos()
             withContext(Dispatchers.IO) {
                 response = call.awaitResponse()
             }
 
-            response?.body()?.let { onDataUpdateCallback.onDataUpdated(repos = it) }
+            response?.let {
+
+                if (it.isSuccessful)
+                    it.body()?.let {
+
+                        val sp = MyApplication.application.getSharedPreferences(
+                            LAST_FETCH_TIME,
+                            MODE_PRIVATE
+                        )
+                        sp.edit().putLong(LAST_FETCH_TIME, Date().time).apply()
+                        onDataUpdateCallback.onDataUpdated(repos = it)
+                    }
+                        ?: onDataUpdateCallback.onDataFetchFailure(it.message())
+                else
+                    onDataUpdateCallback.onDataFetchFailure(it.message())
+
+            } ?: onDataUpdateCallback.onDataFetchFailure(null)
         }
     }
 }
 
 interface DataUpdateCallback {
     fun onDataUpdated(repos: List<RepoModel>)
+    fun onDataFetchFailure(errorMsg: String?)
 }

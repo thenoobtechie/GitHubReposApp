@@ -60,32 +60,34 @@
 
     <TextView
         android:id="@+id/language"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/us_zipcodes"
-        android:maxLines="2"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
         android:drawableStart="@drawable/red_oval_shape"
         android:drawablePadding="@dimen/dimen_margin_between_views"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/stars"
         app:layout_constraintStart_toStartOf="@id/author"
         app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="@dimen/dimen_margin_between_views"
-        android:layout_marginEnd="@dimen/dimen_default_margin"/>
+        tools:text="@tools:sample/us_zipcodes" />
 
 
     <TextView
         android:id="@+id/stars"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/us_zipcodes"
-        android:maxLines="2"
+        android:layout_marginStart="@dimen/dimen_margin_between_views"
+        android:layout_marginTop="@dimen/dimen_margin_between_views"
         android:drawableStart="@mipmap/star_yellow_16"
         android:drawablePadding="@dimen/dimen_margin_between_views"
-        android:layout_marginStart="@dimen/dimen_default_margin"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@id/forks"
         app:layout_constraintStart_toEndOf="@id/language"
         app:layout_constraintTop_toBottomOf="@id/description"
-        android:layout_marginTop="@dimen/dimen_margin_between_views"
-        android:layout_marginEnd="@dimen/dimen_default_margin"/>
+        tools:text="@tools:sample/us_zipcodes" />
 
 
     <TextView
@@ -93,10 +95,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/us_zipcodes"
-        android:maxLines="2"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:drawableStart="@mipmap/fork_black_16"
         android:drawablePadding="@dimen/dimen_margin_between_views"
-        android:layout_marginStart="@dimen/dimen_default_margin"
+        android:layout_marginStart="@dimen/dimen_margin_between_views"
         app:layout_constraintStart_toEndOf="@id/stars"
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +110,7 @@
         android:id="@+id/details_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         app:constraint_referenced_ids="description,forks,stars,language"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

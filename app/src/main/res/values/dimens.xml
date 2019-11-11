@@ -5,4 +5,5 @@
     <dimen name="loader_text_height">15dp</dimen>
     <dimen name="text_size_s">14sp</dimen>
     <dimen name="text_size_m">16sp</dimen>
+    <dimen name="text_size_L">18sp</dimen>
 </resources>

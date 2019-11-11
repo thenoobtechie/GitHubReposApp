@@ -1,8 +1,11 @@
 package com.example.trendinggitrepos
 
 import android.app.Application
+import com.app.nasa.DI.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class MyApplication : Application() {
+class MyApplication : DaggerApplication() {
 
     init {
 
@@ -13,4 +16,18 @@ class MyApplication : Application() {
 
         lateinit var application: MyApplication
     }
-}
+
+
+        override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+
+
+            val component = DaggerApplicationComponent.builder().application(this)
+                .build()
+            component.inject( this)
+            // add database to component builder
+
+            return component
+        }
+
+
+    }

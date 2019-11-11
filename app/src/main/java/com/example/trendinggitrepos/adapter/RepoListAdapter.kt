@@ -13,7 +13,7 @@ import android.transition.TransitionManager
 
 
 
-class RepoListAdapter(var recyclerView: RecyclerView): RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
+class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>() {
 
     private var repos: List<RepoModel>? = null
     private val DEFAULT_LOADING_SIZE = 15
@@ -42,7 +42,7 @@ class RepoListAdapter(var recyclerView: RecyclerView): RecyclerView.Adapter<Repo
         repos?.let { holder.update(it[position], position) }
     }
 
-    fun setData(repos: List<RepoModel>) {
+    fun setData(repos: List<RepoModel>?) {
         this.repos = repos
         notifyDataSetChanged()
     }
@@ -52,6 +52,7 @@ class RepoListAdapter(var recyclerView: RecyclerView): RecyclerView.Adapter<Repo
         fun update(repoModel: RepoModel, position: Int) {
             itemView.author.text = repoModel.author
             itemView.name.text = repoModel.name
+            itemView.description.text = repoModel.description
             itemView.language.text = repoModel.language ?: "NA"
             itemView.stars.text = "${repoModel.stars}"
             itemView.forks.text = "${repoModel.forks}"
