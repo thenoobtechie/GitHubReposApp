@@ -23,5 +23,5 @@ class GithubRepoViewModel @Inject constructor(val dao: GitHubReposDao,val networ
         return liveData
     }
 
-    fun getLiveError(): LiveData<Boolean> = gitHubRepo.getLiveResponse()
+    fun getLiveRequestStatus(): LiveData<Boolean> = gitHubRepo.getLiveRequestStatus()
 }

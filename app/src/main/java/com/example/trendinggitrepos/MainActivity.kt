@@ -1,7 +1,6 @@
 package com.example.trendinggitrepos
 
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.lifecycle.LiveData
@@ -41,7 +40,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         observeData()
 
-        viewModel.getLiveError().observe(this, Observer {
+        viewModel.getLiveRequestStatus().observe(this, Observer {
                 isSuccess ->
 
             swipe_refresh_layout.isRefreshing = false

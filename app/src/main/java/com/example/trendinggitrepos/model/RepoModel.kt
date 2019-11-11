@@ -11,6 +11,7 @@ import org.jetbrains.annotations.PropertyKey
     tableName = Constants.GIT_HUB_REPO_TABLE
 )
 data class RepoModel(@ColumnInfo(name = "name") var name: String,
+                     @ColumnInfo(name = "description") var description: String,
                      @ColumnInfo(name = "author") var author: String,
                      @ColumnInfo(name = "avatar") var avatar: String,
                      @PrimaryKey @ColumnInfo(name = "url") var url: String,

@@ -26,15 +26,17 @@ class GitHubRepo @Inject constructor(
 
         if (isCacheExpired || forceUpdate) {
 
+            //Data expired, clean and fetch
             Utility.showToast(MyApplication.application, "fetching data")
-            localDataSource.deleteExistingData()
+            if (isCacheExpired) localDataSource.deleteExistingData()
+
             remoteDataSource.fetchTrendingRepos()
         }
 
         return localDataSource.getLiveRepos()
     }
 
-    fun getLiveResponse(): MutableLiveData<Boolean> = isDataFetchSuccessful
+    fun getLiveRequestStatus(): MutableLiveData<Boolean> = isDataFetchSuccessful
 
     override fun onDataUpdated(repos: List<RepoModel>) {
 

@@ -52,6 +52,7 @@ class RepoListAdapter: RecyclerView.Adapter<RepoListAdapter.RepoItemViewHolder>(
         fun update(repoModel: RepoModel, position: Int) {
             itemView.author.text = repoModel.author
             itemView.name.text = repoModel.name
+            itemView.description.text = repoModel.description
             itemView.language.text = repoModel.language ?: "NA"
             itemView.stars.text = "${repoModel.stars}"
             itemView.forks.text = "${repoModel.forks}"
